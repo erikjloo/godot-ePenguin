@@ -17,8 +17,8 @@ onready var healthbar : HealthBar = $HealthBar
 onready var body : Node2D = $Body
 onready var actions : AnimationPlayer = $Body/Actions
 onready var effects : AnimationPlayer = $Body/Effects
+onready var attack_player : RayCast2D = $Body/AttackPlayer
 onready var cliff_detector : RayCast2D = $Body/CliffDetector
-onready var attack_player : RayCast2D = $Body/AttackPlayer/AttackPlayer
 onready var chase_player_left : RayCast2D = $ChasePlayer/ChasePlayerLeft
 onready var chase_player_right : RayCast2D = $ChasePlayer/ChasePlayerRight
 onready var sound : AudioStreamPlayer2D = $EnemySound
@@ -46,11 +46,14 @@ func _turn() -> void:
   direction *= -1
   body.scale.x = direction
 
-func _stop() -> void:
-  pass
-
 func _chase() -> void:
   # Tell enemy to chase player
+  pass
+
+func _attack() -> void:
+  pass
+
+func _stop() -> void:
   pass
 
 func _should_turn() -> bool:
@@ -62,20 +65,17 @@ func _should_chase() -> bool:
   return chase_player_left.is_colliding() or chase_player_right.is_colliding()
 
 func _should_sleep() -> bool:
-  return false
+  return !_should_chase()
 
 func _should_attack() -> bool:
   # attack_player set to detect 9th collision layer (player hitbox)
   return attack_player.is_colliding()
 
-func attack() -> void:
-  pass
-
 func _update_health(amount : int) -> void:
   health = clamp(health + amount, 0, MAX_HEALTH)
   healthbar.update_healthbar(health, amount)
   if health <= 0:
-    pass # Replace with call to level manager
+    queue_free()
 
 func apply_damage(amount : int) -> void:
   _update_health(amount)

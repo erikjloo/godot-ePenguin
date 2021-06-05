@@ -200,9 +200,7 @@ enabled = true
 cast_to = Vector2( 0, 80 )
 collision_mask = 3
 
-[node name="AttackPlayer" type="Node2D" parent="Body"]
-
-[node name="AttackPlayer" type="RayCast2D" parent="Body/AttackPlayer"]
+[node name="AttackPlayer" type="RayCast2D" parent="Body"]
 enabled = true
 cast_to = Vector2( 200, 0 )
 collision_mask = 256
@@ -210,6 +208,9 @@ collide_with_areas = true
 collide_with_bodies = false
 
 [node name="ChasePlayer" type="Node2D" parent="."]
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="ChasePlayerRight" type="RayCast2D" parent="ChasePlayer"]
 enabled = true

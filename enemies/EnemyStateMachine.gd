@@ -44,7 +44,7 @@ func _enter_state(new_state : int, old_state : int) -> void:
   parent.actions.play(state_name)
   parent.sound._play(state_name)
   if new_state == states.attack:
-    parent.attack()
+    parent._attack()
 
 func _exit_state(old_state : int, new_state : int) -> void:
   pass

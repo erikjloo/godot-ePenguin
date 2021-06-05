@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://levels/Level1.gd" type="Script" id=1]
 [ext_resource path="res://enemies/arcticfox/ArcticFox.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://levels/level1/textures/Level1_Sky.png" type="Texture" id=4]
 [ext_resource path="res://levels/level1/textures/Level1_1.png" type="Texture" id=5]
 [ext_resource path="res://levels/level1/Level1_MovingPlatform.tscn" type="PackedScene" id=6]
+[ext_resource path="res://common/tilesets/sheet.png" type="Texture" id=7]
 [ext_resource path="res://levels/level1/textures/Level1_Home.png" type="Texture" id=8]
 [ext_resource path="res://levels/level1/textures/Level1_Home_Door.png" type="Texture" id=9]
 [ext_resource path="res://common/fish/Fish.tscn" type="PackedScene" id=10]
@@ -23,6 +24,32 @@ extents = Vector2( 680.52, 23.9854 )
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 36.9451, 62.1959 )
+
+[sub_resource type="ConvexPolygonShape2D" id=4]
+points = PoolVector2Array( 70, 70, 0, 70, 0, 0, 70, 0 )
+
+[sub_resource type="TileSet" id=5]
+0/name = "sheet.png 0"
+0/texture = ExtResource( 7 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 140, 210, 70, 70 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape = SubResource( 4 )
+0/shape_one_way = false
+0/shape_one_way_margin = 1.0
+0/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 4 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+0/z_index = 0
 
 [node name="Level1" type="Node"]
 script = ExtResource( 1 )
@@ -167,5 +194,12 @@ shape = SubResource( 3 )
 position = Vector2( 5371.94, 1551.62 )
 
 [node name="Music" type="AudioStreamPlayer2D" parent="."]
+
+[node name="TileMap" type="TileMap" parent="."]
+scale = Vector2( 2, 2 )
+tile_set = SubResource( 5 )
+cell_size = Vector2( 70, 70 )
+format = 1
+tile_data = PoolIntArray( 458790, 0, 0, 458791, 0, 0, 458792, 0, 0, 458793, 0, 0, 458794, 0, 0, 458795, 0, 0, 458796, 0, 0, 458797, 0, 0, 458798, 0, 0, 458799, 0, 0, 458800, 0, 0, 852040, 0, 0, 852041, 0, 0, 852042, 0, 0, 852043, 0, 0, 852044, 0, 0, 852045, 0, 0, 852046, 0, 0, 852047, 0, 0, 852048, 0, 0, 917576, 0, 0, 917581, 0, 0, 917584, 0, 0, 983112, 0, 0, 983115, 0, 0, 983120, 0, 0, 1048656, 0, 0, 1114197, 0, 0 )
 
 [connection signal="body_entered" from="Triggers/Level0" to="." method="_on_Level0_entered"]
