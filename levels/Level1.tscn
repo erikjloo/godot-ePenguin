@@ -166,4 +166,6 @@ shape = SubResource( 3 )
 [node name="JumpTrigger" parent="Triggers" instance=ExtResource( 13 )]
 position = Vector2( 5371.94, 1551.62 )
 
+[node name="Music" type="AudioStreamPlayer2D" parent="."]
+
 [connection signal="body_entered" from="Triggers/Level0" to="." method="_on_Level0_entered"]
