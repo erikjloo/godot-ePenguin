@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/flutter.ogg-494fb9c2f0501a8fdedcdc62d93feed0.oggstr"
+
+[deps]
+
+source_file="res://player/audio/flutter.ogg"
+dest_files=[ "res://.import/flutter.ogg-494fb9c2f0501a8fdedcdc62d93feed0.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

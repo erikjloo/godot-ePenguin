@@ -1,0 +1,169 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://levels/Level1.gd" type="Script" id=1]
+[ext_resource path="res://enemies/arcticfox/ArcticFox.tscn" type="PackedScene" id=2]
+[ext_resource path="res://levels/level1/textures/Level1_0.png" type="Texture" id=3]
+[ext_resource path="res://levels/level1/textures/Level1_Sky.png" type="Texture" id=4]
+[ext_resource path="res://levels/level1/textures/Level1_1.png" type="Texture" id=5]
+[ext_resource path="res://levels/level1/Level1_MovingPlatform.tscn" type="PackedScene" id=6]
+[ext_resource path="res://levels/level1/textures/Level1_Home.png" type="Texture" id=8]
+[ext_resource path="res://levels/level1/textures/Level1_Home_Door.png" type="Texture" id=9]
+[ext_resource path="res://common/fish/Fish.tscn" type="PackedScene" id=10]
+[ext_resource path="res://common/spikes/Spikes.tscn" type="PackedScene" id=11]
+[ext_resource path="res://levels/level1/textures/Level1_Background.png" type="Texture" id=12]
+[ext_resource path="res://common/jumptrigger/JumpTrigger.tscn" type="PackedScene" id=13]
+[ext_resource path="res://levels/level1/textures/Level1_0a.png" type="Texture" id=14]
+[ext_resource path="res://common/avalanche/Avalanche.tscn" type="PackedScene" id=15]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 10, 100 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 680.52, 23.9854 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 36.9451, 62.1959 )
+
+[node name="Level1" type="Node"]
+script = ExtResource( 1 )
+limit_left = 500
+
+[node name="Level0_Level1" type="Position2D" parent="."]
+position = Vector2( 1270, 364 )
+
+[node name="Background" type="Sprite" parent="."]
+position = Vector2( 929.984, -150.847 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 12 )
+centered = false
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+offset = Vector2( 0, -500 )
+scale = Vector2( 2.4, 2.4 )
+transform = Transform2D( 2.4, 0, 0, 2.4, 0, -500 )
+scroll_base_scale = Vector2( 0.1, 0.1 )
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2( 1416, 0 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+texture = ExtResource( 4 )
+centered = false
+
+[node name="Platforms" type="Node" parent="."]
+
+[node name="Home" type="StaticBody2D" parent="Platforms"]
+position = Vector2( 570, 86 )
+scale = Vector2( 1.5, 1.5 )
+collision_mask = 0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Home" type="Sprite" parent="Platforms/Home"]
+z_index = 1000
+texture = ExtResource( 8 )
+
+[node name="Door" type="Sprite" parent="Platforms/Home"]
+position = Vector2( 382, 106 )
+z_index = 50
+texture = ExtResource( 9 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Platforms/Home"]
+z_index = 1000
+polygon = PoolVector2Array( -384.395, 192.036, 263.681, 193.398, 265.866, 40.4341, 397.417, 40.4169, 379.579, 28.5249, 294.054, 26.9797, 277.492, -13.4012, 250.748, -64.1342, 187.48, -118.027, 119.586, -164.247, 45.5299, -187.517, -30.0294, -192.07, -89.2928, -188.704, -152.25, -167.917, -219.364, -134.063, -280.539, -88.3299, -336.002, -16.7593 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Home"]
+position = Vector2( -60, -284 )
+z_index = 1000
+shape = SubResource( 1 )
+
+[node name="Platform_0" type="StaticBody2D" parent="Platforms"]
+position = Vector2( 0, -40 )
+z_index = 20
+collision_mask = 0
+
+[node name="Sprite" type="Sprite" parent="Platforms/Platform_0"]
+position = Vector2( -3.36353, 308.409 )
+texture = ExtResource( 3 )
+centered = false
+
+[node name="Sprite2" type="Sprite" parent="Platforms/Platform_0"]
+position = Vector2( 4914.43, 1204.19 )
+texture = ExtResource( 14 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Platforms/Platform_0"]
+position = Vector2( 11.2246, 53.8782 )
+polygon = PoolVector2Array( 2.05742, 363.678, 1554.3, 366.113, 1653.83, 289, 1883.69, 289, 2136.85, 501.485, 2303.56, 537.798, 4384.26, 539.669, 4581.09, 653.403, 5169.72, 1608.66, 5284.08, 1632.21, 5407.35, 1598.77, 5337.43, 2001.36, -1.35358, 2026.66 )
+
+[node name="Platform_1" type="StaticBody2D" parent="Platforms"]
+position = Vector2( 3140.09, 575.345 )
+collision_layer = 2
+collision_mask = 0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Platforms/Platform_1"]
+texture = ExtResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Platform_1"]
+position = Vector2( 0, -190 )
+shape = SubResource( 2 )
+one_way_collision = true
+
+[node name="MovingPlatform" parent="Platforms" instance=ExtResource( 6 )]
+position = Vector2( 5657.81, 1680.93 )
+
+[node name="Collectables" type="Node" parent="."]
+
+[node name="Fish" parent="Collectables" instance=ExtResource( 10 )]
+position = Vector2( 1751.65, 259.912 )
+
+[node name="Fish2" parent="Collectables" instance=ExtResource( 10 )]
+position = Vector2( 530.618, -255.823 )
+
+[node name="Traps" type="Node" parent="."]
+
+[node name="Spikes" parent="Traps" instance=ExtResource( 11 )]
+position = Vector2( 2901.48, 537.202 )
+
+[node name="Spikes2" parent="Traps" instance=ExtResource( 11 )]
+position = Vector2( 2994.47, 536.582 )
+
+[node name="Spikes3" parent="Traps" instance=ExtResource( 11 )]
+position = Vector2( 3087.1, 536.166 )
+
+[node name="Spikes4" parent="Traps" instance=ExtResource( 11 )]
+position = Vector2( 3179.66, 535.959 )
+
+[node name="Spikes5" parent="Traps" instance=ExtResource( 11 )]
+position = Vector2( 3273.6, 535.959 )
+
+[node name="Spikes6" parent="Traps" instance=ExtResource( 11 )]
+position = Vector2( 3365.72, 535.959 )
+
+[node name="Avalanche" parent="Traps" instance=ExtResource( 15 )]
+position = Vector2( 3902.21, -2.7576 )
+
+[node name="Enemies" type="Node" parent="."]
+
+[node name="ArcticFox" parent="Enemies" instance=ExtResource( 2 )]
+position = Vector2( 3780.42, 499.091 )
+
+[node name="Triggers" type="Node" parent="."]
+
+[node name="Level0" type="Area2D" parent="Triggers"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Triggers/Level0"]
+position = Vector2( 1011.71, 280.004 )
+z_index = 1000
+shape = SubResource( 3 )
+
+[node name="JumpTrigger" parent="Triggers" instance=ExtResource( 13 )]
+position = Vector2( 5371.94, 1551.62 )
+
+[connection signal="body_entered" from="Triggers/Level0" to="." method="_on_Level0_entered"]

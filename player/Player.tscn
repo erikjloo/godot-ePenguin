@@ -1,0 +1,362 @@
+[gd_scene load_steps=52 format=2]
+
+[ext_resource path="res://player/Player.gd" type="Script" id=1]
+[ext_resource path="res://player/PlayerCamera.gd" type="Script" id=2]
+[ext_resource path="res://player/PlayerSound.gd" type="Script" id=3]
+[ext_resource path="res://player/PlayerStateMachine.gd" type="Script" id=4]
+[ext_resource path="res://player/ActionStateMachine.gd" type="Script" id=5]
+[ext_resource path="res://common/Hitbox.gd" type="Script" id=6]
+[ext_resource path="res://player/textures/penguin_idle.png" type="Texture" id=7]
+[ext_resource path="res://player/textures/penguin_crawl.png" type="Texture" id=8]
+[ext_resource path="res://player/textures/penguin_walk.png" type="Texture" id=9]
+[ext_resource path="res://player/textures/penguin_walk_run_1.png" type="Texture" id=10]
+[ext_resource path="res://player/textures/penguin_walk_run_2.png" type="Texture" id=11]
+[ext_resource path="res://player/textures/penguin_jump_right_1.png" type="Texture" id=12]
+[ext_resource path="res://player/textures/penguin_fly_right_2.png" type="Texture" id=13]
+[ext_resource path="res://player/textures/penguin_fly_right_1.png" type="Texture" id=14]
+[ext_resource path="res://player/audio/footstep_snow_000.ogg" type="AudioStream" id=15]
+[ext_resource path="res://player/audio/footstep_snow_001.ogg" type="AudioStream" id=16]
+[ext_resource path="res://player/audio/footstep_snow_002.ogg" type="AudioStream" id=17]
+[ext_resource path="res://player/audio/footstep_snow_003.ogg" type="AudioStream" id=18]
+[ext_resource path="res://player/audio/footstep_snow_004.ogg" type="AudioStream" id=19]
+[ext_resource path="res://player/audio/flutter.ogg" type="AudioStream" id=20]
+[ext_resource path="res://common/screenshake/ScreenShake.tscn" type="PackedScene" id=99]
+
+[sub_resource type="ConvexPolygonShape2D" id=1]
+points = PoolVector2Array( -40, 0, 40, 0, 50, -35, 20, -170, -25, -170, -50, -35 )
+
+[sub_resource type="ConvexPolygonShape2D" id=2]
+points = PoolVector2Array( -40, 0, 40, 0, 50, -35, 20, -120, -25, -120, -50, -35 )
+
+[sub_resource type="AtlasTexture" id=3]
+flags = 4
+atlas = ExtResource( 7 )
+region = Rect2( 501, 0, 167, 172 )
+
+[sub_resource type="AtlasTexture" id=4]
+flags = 4
+atlas = ExtResource( 9 )
+region = Rect2( 0, 0, 160, 180 )
+
+[sub_resource type="AtlasTexture" id=5]
+flags = 4
+atlas = ExtResource( 9 )
+region = Rect2( 160, 0, 160, 180 )
+
+[sub_resource type="AtlasTexture" id=6]
+flags = 4
+atlas = ExtResource( 9 )
+region = Rect2( 320, 0, 160, 180 )
+
+[sub_resource type="AtlasTexture" id=7]
+flags = 4
+atlas = ExtResource( 9 )
+region = Rect2( 480, 0, 160, 180 )
+
+[sub_resource type="AtlasTexture" id=8]
+flags = 4
+atlas = ExtResource( 9 )
+region = Rect2( 640, 0, 160, 180 )
+
+[sub_resource type="AtlasTexture" id=9]
+flags = 4
+atlas = ExtResource( 9 )
+region = Rect2( 800, 0, 160, 180 )
+
+[sub_resource type="AtlasTexture" id=10]
+flags = 4
+atlas = ExtResource( 9 )
+region = Rect2( 960, 0, 160, 180 )
+
+[sub_resource type="AtlasTexture" id=11]
+flags = 4
+atlas = ExtResource( 9 )
+region = Rect2( 1120, 0, 160, 180 )
+
+[sub_resource type="AtlasTexture" id=12]
+flags = 4
+atlas = ExtResource( 9 )
+region = Rect2( 1280, 0, 160, 180 )
+
+[sub_resource type="AtlasTexture" id=13]
+flags = 4
+atlas = ExtResource( 9 )
+region = Rect2( 1440, 0, 160, 180 )
+
+[sub_resource type="AtlasTexture" id=14]
+flags = 4
+atlas = ExtResource( 8 )
+region = Rect2( 0, 0, 160, 180 )
+
+[sub_resource type="AtlasTexture" id=15]
+flags = 4
+atlas = ExtResource( 8 )
+region = Rect2( 160, 0, 160, 180 )
+
+[sub_resource type="AtlasTexture" id=16]
+flags = 4
+atlas = ExtResource( 8 )
+region = Rect2( 320, 0, 160, 180 )
+
+[sub_resource type="AtlasTexture" id=17]
+flags = 4
+atlas = ExtResource( 8 )
+region = Rect2( 480, 0, 160, 180 )
+
+[sub_resource type="AtlasTexture" id=18]
+flags = 4
+atlas = ExtResource( 8 )
+region = Rect2( 640, 0, 160, 180 )
+
+[sub_resource type="AtlasTexture" id=19]
+flags = 4
+atlas = ExtResource( 8 )
+region = Rect2( 800, 0, 160, 180 )
+
+[sub_resource type="AtlasTexture" id=20]
+flags = 4
+atlas = ExtResource( 8 )
+region = Rect2( 960, 0, 160, 180 )
+
+[sub_resource type="AtlasTexture" id=21]
+flags = 4
+atlas = ExtResource( 8 )
+region = Rect2( 1120, 0, 160, 180 )
+
+[sub_resource type="AtlasTexture" id=22]
+flags = 4
+atlas = ExtResource( 8 )
+region = Rect2( 1280, 0, 160, 180 )
+
+[sub_resource type="AtlasTexture" id=23]
+flags = 4
+atlas = ExtResource( 8 )
+region = Rect2( 1440, 0, 160, 180 )
+
+[sub_resource type="SpriteFrames" id=24]
+animations = [ {
+"frames": [ SubResource( 3 ) ],
+"loop": false,
+"name": "idle",
+"speed": 60.0
+}, {
+"frames": [ ExtResource( 12 ), ExtResource( 14 ) ],
+"loop": false,
+"name": "jump",
+"speed": 2.0
+}, {
+"frames": [ ExtResource( 13 ), ExtResource( 14 ) ],
+"loop": true,
+"name": "fly",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 14 ) ],
+"loop": false,
+"name": "fall",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ) ],
+"loop": true,
+"name": "walk",
+"speed": 13.0
+}, {
+"frames": [ SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ) ],
+"loop": true,
+"name": "crawl",
+"speed": 13.0
+}, {
+"frames": [ ExtResource( 10 ), ExtResource( 11 ) ],
+"loop": true,
+"name": "run",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=25]
+animations = [ {
+"frames": [  ],
+"loop": true,
+"name": "none",
+"speed": 5.0
+} ]
+
+[sub_resource type="Animation" id=26]
+length = 0.1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("..:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=27]
+length = 0.1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+
+[sub_resource type="RectangleShape2D" id=28]
+extents = Vector2( 50, 10 )
+
+[sub_resource type="CapsuleShape2D" id=29]
+radius = 20.0
+height = 100.0
+
+[sub_resource type="CapsuleShape2D" id=30]
+radius = 20.0
+height = 70.0
+
+[node name="Player" type="KinematicBody2D"]
+z_index = 100
+collision_layer = 0
+collision_mask = 3
+script = ExtResource( 1 )
+
+[node name="StandingShape" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="CrouchingShape" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )
+disabled = true
+
+[node name="Body" type="Node2D" parent="."]
+light_mask = 3
+
+[node name="Sprite" type="AnimatedSprite" parent="Body"]
+position = Vector2( 0, -85 )
+frames = SubResource( 24 )
+animation = "idle"
+
+[node name="Actions" type="AnimatedSprite" parent="Body"]
+visible = false
+position = Vector2( 16, -146 )
+scale = Vector2( 1.1, 1.1 )
+frames = SubResource( 25 )
+animation = "none"
+
+[node name="Effects" type="AnimationPlayer" parent="Body"]
+anims/damage = SubResource( 26 )
+anims/flash = SubResource( 27 )
+
+[node name="PlayerCamera" type="Camera2D" parent="."]
+position = Vector2( 484.09, -293.273 )
+current = true
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+smoothing_enabled = true
+drag_margin_left = 0.1
+drag_margin_top = 0.75
+drag_margin_right = 0.1
+editor_draw_drag_margin = true
+script = ExtResource( 2 )
+
+[node name="ShiftTween" type="Tween" parent="PlayerCamera"]
+
+[node name="ScreenShake" parent="PlayerCamera" instance=ExtResource( 99 )]
+
+[node name="PlayerSound" type="AudioStreamPlayer2D" parent="."]
+script = ExtResource( 3 )
+sounds = {
+"crawl": [ ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ) ],
+"fly": [ ExtResource( 20 ) ],
+"run": [ ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ) ],
+"walk": [ ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ) ]
+}
+
+[node name="PlayerStateMachine" type="Node" parent="."]
+script = ExtResource( 4 )
+
+[node name="ActionStateMachine" type="Node" parent="."]
+script = ExtResource( 5 )
+
+[node name="WallRayCasts" type="Node2D" parent="."]
+light_mask = 3
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="LeftWallRayCasts" type="Node2D" parent="WallRayCasts"]
+
+[node name="LeftWallRayCastBottom" type="RayCast2D" parent="WallRayCasts/LeftWallRayCasts"]
+position = Vector2( 0, -10 )
+enabled = true
+cast_to = Vector2( -50, 0 )
+collision_mask = 3
+
+[node name="LeftWallRayCastTop" type="RayCast2D" parent="WallRayCasts/LeftWallRayCasts"]
+position = Vector2( 0, -100 )
+enabled = true
+cast_to = Vector2( -50, 0 )
+collision_mask = 3
+
+[node name="RightWallRayCasts" type="Node2D" parent="WallRayCasts"]
+
+[node name="RightWallRayCastBottom" type="RayCast2D" parent="WallRayCasts/RightWallRayCasts"]
+position = Vector2( 0, -10 )
+enabled = true
+cast_to = Vector2( 50, 0 )
+collision_mask = 3
+
+[node name="RightWallRayCastTop" type="RayCast2D" parent="WallRayCasts/RightWallRayCasts"]
+position = Vector2( 0, -100 )
+enabled = true
+cast_to = Vector2( 50, 0 )
+collision_mask = 3
+
+[node name="DropThruCheck" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DropThruCheck"]
+position = Vector2( 0, -10 )
+shape = SubResource( 28 )
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 256
+collision_mask = 256
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StandingHitbox" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2( 0, -80 )
+shape = SubResource( 29 )
+
+[node name="CrouchingHitbox" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2( 0, -65 )
+shape = SubResource( 30 )
+disabled = true
+
+[node name="FlutterTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="CoyoteTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="InvulnerabilityTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="body_exited" from="DropThruCheck" to="." method="_on_dropped_through"]
+[connection signal="timeout" from="InvulnerabilityTimer" to="." method="_on_invulnerability_timeout"]

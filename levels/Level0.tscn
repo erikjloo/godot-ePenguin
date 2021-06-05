@@ -1,0 +1,88 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://levels/Level0.gd" type="Script" id=1]
+[ext_resource path="res://levels/level0/textures/Level0_Floor.png" type="Texture" id=2]
+[ext_resource path="res://levels/level0/textures/Level0_Wall.png" type="Texture" id=5]
+[ext_resource path="res://levels/level0/textures/Level0_Table.png" type="Texture" id=6]
+[ext_resource path="res://common/fish/Fish.tscn" type="PackedScene" id=7]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 740, 24 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 12.0484, 392.381 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 90, 5 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 38.4308, 96.2531 )
+
+[node name="Level0" type="Node"]
+script = ExtResource( 1 )
+limit_top = -620
+limit_right = 1520
+limit_bottom = 300
+zoom = Vector2( 0.95, 0.95 )
+
+[node name="Wall" type="Sprite" parent="."]
+position = Vector2( 0, -566 )
+scale = Vector2( 1.01, 1.01 )
+texture = ExtResource( 5 )
+centered = false
+
+[node name="Floor" type="StaticBody2D" parent="."]
+position = Vector2( 784, 211 )
+scale = Vector2( 1.1, 1 )
+z_index = 20
+collision_mask = 0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Floor"]
+texture = ExtResource( 2 )
+
+[node name="FloorCollision" type="CollisionShape2D" parent="Floor"]
+shape = SubResource( 1 )
+
+[node name="WallCollision" type="CollisionShape2D" parent="Floor"]
+position = Vector2( -723, -384 )
+shape = SubResource( 2 )
+
+[node name="Table" type="StaticBody2D" parent="."]
+position = Vector2( 600, 125 )
+scale = Vector2( 2, 1.2 )
+z_index = 50
+collision_layer = 2
+collision_mask = 0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Table"]
+texture = ExtResource( 6 )
+
+[node name="TableCollision" type="CollisionShape2D" parent="Table"]
+position = Vector2( 0, -35 )
+shape = SubResource( 3 )
+one_way_collision = true
+
+[node name="Level1" type="Area2D" parent="."]
+position = Vector2( 1555, 80 )
+collision_mask = 0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level1"]
+z_index = 1000
+shape = SubResource( 4 )
+
+[node name="Fish" parent="." instance=ExtResource( 7 )]
+position = Vector2( 600, 25 )
+
+[node name="Level1_Level0" type="Position2D" parent="."]
+position = Vector2( 1400, 180 )
+
+[connection signal="body_entered" from="Level1" to="." method="_on_Level1_entered"]

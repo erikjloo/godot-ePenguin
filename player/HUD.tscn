@@ -1,0 +1,92 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://gui/medium_font.tres" type="DynamicFont" id=1]
+[ext_resource path="res://player/Fishbar.tscn" type="PackedScene" id=2]
+[ext_resource path="res://gui/stamina.tres" type="StyleBox" id=3]
+[ext_resource path="res://common/BlackScreen.gd" type="Script" id=4]
+[ext_resource path="res://common/healthbar/HealthBar.tscn" type="PackedScene" id=6]
+
+[sub_resource type="StyleBoxFlat" id=1]
+content_margin_left = 8.0
+content_margin_right = 8.0
+content_margin_top = 8.0
+content_margin_bottom = 8.0
+bg_color = Color( 0.490196, 0.305882, 0.305882, 0.392157 )
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color( 0.490196, 0.305882, 0.305882, 1 )
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+corner_detail = 2
+
+[sub_resource type="Animation" id=2]
+resource_name = "fade"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ) ]
+}
+
+[node name="HUD" type="CanvasLayer"]
+
+[node name="Score" type="RichTextLabel" parent="."]
+margin_left = 1300.0
+margin_right = 1600.0
+margin_bottom = 40.0
+custom_fonts/normal_font = ExtResource( 1 )
+text = "Score"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Stamina" type="ProgressBar" parent="."]
+margin_left = 1300.0
+margin_top = 65.0
+margin_right = 1600.0
+margin_bottom = 81.0
+custom_styles/fg = ExtResource( 3 )
+custom_styles/bg = SubResource( 1 )
+custom_fonts/font = ExtResource( 1 )
+value = 100.0
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Health" parent="." instance=ExtResource( 6 )]
+margin_left = 1300.0
+margin_top = 40.0
+margin_right = 1300.0
+margin_bottom = 40.0
+
+[node name="FishBar" parent="." instance=ExtResource( 2 )]
+margin_left = 1300.0
+margin_top = 90.0
+margin_right = 1300.0
+margin_bottom = 90.0
+scale = Vector2( 0.3, 0.3 )
+
+[node name="BlackScreen" type="ColorRect" parent="."]
+margin_right = 1600.0
+margin_bottom = 900.0
+color = Color( 0, 0, 0, 0 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BlackScreen"]
+anims/fade = SubResource( 2 )
