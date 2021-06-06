@@ -83,7 +83,7 @@ centered = false
 [node name="Platforms" type="Node" parent="."]
 
 [node name="Home" type="StaticBody2D" parent="Platforms"]
-position = Vector2( 570, 86 )
+position = Vector2( 570, 75 )
 scale = Vector2( 1.5, 1.5 )
 collision_mask = 0
 __meta__ = {
@@ -109,12 +109,15 @@ z_index = 1000
 shape = SubResource( 1 )
 
 [node name="Platform_0" type="StaticBody2D" parent="Platforms"]
-position = Vector2( 0, -40 )
+position = Vector2( 0, -45 )
 z_index = 20
 collision_mask = 0
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="Sprite" type="Sprite" parent="Platforms/Platform_0"]
-position = Vector2( -3.36353, 308.409 )
+position = Vector2( -3, 308 )
 texture = ExtResource( 3 )
 centered = false
 
@@ -124,10 +127,10 @@ texture = ExtResource( 14 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Platforms/Platform_0"]
 position = Vector2( 11.2246, 53.8782 )
-polygon = PoolVector2Array( 2.05742, 363.678, 1554.3, 366.113, 1653.83, 289, 1883.69, 289, 2136.85, 501.485, 2303.56, 537.798, 4384.26, 539.669, 4581.09, 653.403, 5169.72, 1608.66, 5284.08, 1632.21, 5407.35, 1598.77, 5337.43, 2001.36, -1.35358, 2026.66 )
+polygon = PoolVector2Array( 9.72632, 346.895, 1561.58, 352.788, 1653.83, 289, 1883.69, 289, 2136.85, 501.485, 2303.56, 537.798, 4384.26, 539.669, 4581.09, 653.403, 5169.72, 1608.66, 5284.08, 1632.21, 5407.35, 1598.77, 5337.43, 2001.36, -1.35358, 2026.66 )
 
 [node name="Platform_1" type="StaticBody2D" parent="Platforms"]
-position = Vector2( 3140.09, 575.345 )
+position = Vector2( 3004.17, 597.998 )
 collision_layer = 2
 collision_mask = 0
 __meta__ = {
@@ -196,6 +199,14 @@ position = Vector2( 5371.94, 1551.62 )
 [node name="Music" type="AudioStreamPlayer2D" parent="."]
 
 [node name="TileMap" type="TileMap" parent="."]
+scale = Vector2( 2, 2 )
+z_index = 50
+tile_set = SubResource( 5 )
+cell_size = Vector2( 70, 70 )
+format = 1
+tile_data = PoolIntArray( 262161, 0, 0, 262162, 0, 0, 262163, 0, 0, 262164, 0, 0, 262165, 0, 0, 262166, 0, 0, 262167, 0, 0, 262168, 0, 0, 262169, 0, 0, 262170, 0, 0, 262171, 0, 0, 262172, 0, 0, 262173, 0, 0, 262174, 0, 0, 327719, 0, 0, 458790, 0, 0, 458791, 0, 0, 458792, 0, 0, 458793, 0, 0, 458794, 0, 0, 458795, 0, 0, 458796, 0, 0, 458797, 0, 0, 458798, 0, 0, 458799, 0, 0, 458800, 0, 0, 852040, 0, 0, 852041, 0, 0, 852042, 0, 0, 852043, 0, 0, 852044, 0, 0, 852045, 0, 0, 852046, 0, 0, 852047, 0, 0, 852048, 0, 0, 917576, 0, 0, 917581, 0, 0, 917584, 0, 0, 983112, 0, 0, 983115, 0, 0, 983120, 0, 0, 1048656, 0, 0, 1114197, 0, 0 )
+
+[node name="FallThrough" type="TileMap" parent="."]
 scale = Vector2( 2, 2 )
 tile_set = SubResource( 5 )
 cell_size = Vector2( 70, 70 )

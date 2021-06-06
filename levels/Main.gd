@@ -2,8 +2,8 @@ extends Node
 
 # Member variables
 const SCENE_PATH : String = "res://levels/"
-const STATEFULL : String = "statefull"
-const SAVE_DEPTH : int = 14
+const STATEFULL : String = "Statefull" # Not yet used
+const SAVE_DEPTH : int = 14 # Not yet used
 
 onready var player : Player = $Player
 
@@ -69,4 +69,3 @@ func _load_state(new_level : String, deep : bool = false) -> void:
       for _val in range(0, prop_range):
         x.set(curr_dict[count].keys()[0], curr_dict[count].values()[0])
         count+=1
-        

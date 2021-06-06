@@ -5,7 +5,7 @@ class_name StateMachine
 var current_state : int = 0
 var previous_state : int = 0
 onready var parent := get_parent()
-var states : Dictionary
+var states : Dictionary = {}
 
 func _process(delta : float) -> void:
   if current_state:
@@ -30,9 +30,9 @@ func set_state(new_state : int) -> void:
   previous_state = current_state
   current_state = new_state
 
-  if previous_state != 0:
+  if previous_state:
     _exit_state(previous_state, new_state)
-  if new_state != 0:
+  if new_state:
     _enter_state(new_state, previous_state)
 
 func add_state(state_name : String) -> void:

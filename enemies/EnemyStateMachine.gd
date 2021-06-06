@@ -35,17 +35,18 @@ func _get_transition(_delta : float) -> int:
       elif parent._should_attack():
         return states.attack
     states.attack:
-      if parent.is_on_floor():
-        return states.sleep
+      return states.chase
+#      if parent.is_on_floor():
+#        return states.sleep
   return 0
 
-func _enter_state(new_state : int, old_state : int) -> void:
+func _enter_state(new_state : int, _old_state : int) -> void:
   var state_name : String = get_state(new_state)
   parent.actions.play(state_name)
   parent.sound._play(state_name)
   if new_state == states.attack:
     parent._attack()
 
-func _exit_state(old_state : int, new_state : int) -> void:
+func _exit_state(_old_state : int, _new_state : int) -> void:
   pass
 
