@@ -85,7 +85,7 @@ func apply_damage(amount : int) -> void:
 
 func _handle_input() -> void:
   direction = - int(Input.is_action_pressed("ui_left")) + int(Input.is_action_pressed("ui_right"))
-
+  
   if direction != 0:
     body.scale.x = direction
     facing = direction

@@ -22,11 +22,9 @@ onready var effects : AnimationPlayer = $Body/Effects
 onready var sound : AudioStreamPlayer2D = $EnemySound
 onready var state_machine : EnemyStateMachine = $EnemyStateMachine
 
-onready var attack_player : RayCast2D = $Body/AttackPlayer
 onready var wall_detector : RayCast2D = $Body/WallDetector
 onready var trap_detector : RayCast2D = $Body/TrapDetector
 onready var cliff_detector : RayCast2D = $Body/CliffDetector
-onready var chase_player : Area2D = $ChasePlayer
 onready var attack : Area2D = $Attack
 
 onready var chase_timer : Timer = $ChaseTimer
@@ -44,6 +42,7 @@ var direction : int = 0
 var velocity : Vector2 = Vector2.ZERO
 var is_grounded : bool = true
 var should_chase : bool = false
+var should_attack : bool = false
 var can_chase : bool = false
 var can_jump : bool = true
 
@@ -83,12 +82,13 @@ func _stop() -> void:
   direction = 0
 
 func _should_chase() -> bool:
+  # chase_player set to detect 1st collision layer (player)
   chase_timer.start()
   return should_chase
 
 func _should_attack() -> bool:
-  # attack_player set to detect 9th collision layer (player hitbox)
-  return attack_player.is_colliding()
+  # attack_player set to detect 1st collision layer (player)
+  return should_attack
 
 func _should_turn() -> bool:
   # wall_detector and cliff_detector set to detect 1st and 2nd collision layers
@@ -116,8 +116,13 @@ func _on_chase_player_exited(body : Node2D):
   if body.name == "Player":
     should_chase = false
 
-
-
-
 func _on_Attack(body):
   pass # Replace with function body.
+
+func _on_attack_player_entered(body):
+  if body.name == "Player":
+    should_attack = true
+
+func _on_attack_player_exited(body):
+  if body.name == "Player":
+    should_attack = false

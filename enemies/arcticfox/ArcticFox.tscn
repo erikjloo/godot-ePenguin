@@ -148,6 +148,9 @@ tracks/0/keys = {
 "values": [ true, false, true ]
 }
 
+[sub_resource type="CircleShape2D" id=9]
+radius = 100.0
+
 [sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 89.2864, 53.6016 )
 
@@ -156,9 +159,6 @@ radius = 600.0
 
 [sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 95, 60 )
-
-[sub_resource type="CircleShape2D" id=9]
-radius = 26.0
 
 [node name="ArcticFox" type="KinematicBody2D"]
 z_index = 50
@@ -228,12 +228,15 @@ collision_mask = 512
 collide_with_areas = true
 collide_with_bodies = false
 
-[node name="AttackPlayer" type="RayCast2D" parent="Body"]
-enabled = true
-cast_to = Vector2( 200, 0 )
-collision_mask = 256
-collide_with_areas = true
-collide_with_bodies = false
+[node name="AttackPlayer" type="Area2D" parent="Body"]
+position = Vector2( 68.0443, -33.0675 )
+collision_mask = 0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="AttackPlayer" type="CollisionShape2D" parent="Body/AttackPlayer"]
+shape = SubResource( 9 )
 
 [node name="EnemySound" type="AudioStreamPlayer2D" parent="."]
 script = ExtResource( 7 )
@@ -286,6 +289,8 @@ one_shot = true
 wait_time = 2.0
 one_shot = true
 
+[connection signal="body_entered" from="Body/AttackPlayer" to="." method="_on_attack_player_entered"]
+[connection signal="body_exited" from="Body/AttackPlayer" to="." method="_on_attack_player_exited"]
 [connection signal="body_entered" from="ChasePlayer" to="." method="_on_chase_player_entered"]
 [connection signal="body_exited" from="ChasePlayer" to="." method="_on_chase_player_exited"]
 [connection signal="body_entered" from="Attack" to="." method="_on_attack"]

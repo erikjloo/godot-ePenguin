@@ -75,6 +75,7 @@ func _get_transition(_delta : float) -> int:
 
 func _enter_state(new_state : int, old_state : int) -> void:
   var state_name : String = get_state(new_state)
+  # Enter slide state properly (play transition animation)
   if old_state != states.slide and new_state == states.slide:
     print("enter slide animation")
   parent.sprite.play(state_name)
@@ -85,15 +86,16 @@ func _enter_state(new_state : int, old_state : int) -> void:
       parent._on_crouch()
 
 func _exit_state(old_state : int, new_state : int) -> void:
+  # Exit slide state properly (play transition animation)
   if old_state == states.slide and new_state != states.slide:
     print("exit slide animation")
   # Exit crouch state properly (change collision shapes and hitboxes)
-  if [states.crouch, states.crawl, states.slide].has(old_state):
-    if ![states.crouch, states.crawl].has(new_state):
+  if [states.crouch, states.crawl].has(old_state):
+    if ![states.crouch, states.crawl, states.slide].has(new_state):
       parent._on_stand()
 
 func is_crouched() -> bool:
-  return [states.crouch, states.crawl].has(current_state)
+  return [states.crouch, states.crawl, states.slide].has(current_state)
 
 func is_running() -> bool:
-  return current_state ==  states.run
+  return current_state == states.run
