@@ -14,10 +14,6 @@ var current_scene : Level
 signal unload_scene(delay)
 signal scene_loaded()
 
-func _input(event : InputEvent) -> void:
-  if event.is_action_pressed("ui_cancel"):
-    get_tree().paused = !get_tree().paused # toggle pause status
-
 func _ready() -> void:
   pause_mode = PAUSE_MODE_STOP
   connect("scene_loaded", $HUD/BlackScreen, "_on_scene_loaded")

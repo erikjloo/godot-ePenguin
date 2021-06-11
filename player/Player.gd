@@ -117,7 +117,7 @@ func _update_stamina() -> void:
     can_run = true
 
 func _update_health(amount : int) -> void:
-  health = clamp(health + amount, 0, MAX_HEALTH)
+  health = int(clamp(health + amount, 0, MAX_HEALTH))
   healthbar.update_healthbar(health, amount)
   if health <= 0:
     pass # Replace with call to level manager

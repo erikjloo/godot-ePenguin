@@ -54,7 +54,12 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://common/MovingPlatform.gd"
 }, {
-"base": "MarginContainer",
+"base": "CenterContainer",
+"class": "Options",
+"language": "GDScript",
+"path": "res://gui/Options.gd"
+}, {
+"base": "CanvasLayer",
 "class": "PauseMenu",
 "language": "GDScript",
 "path": "res://gui/PauseMenu.gd"
@@ -109,6 +114,7 @@ _global_script_class_icons={
 "Level0": "",
 "Level1": "",
 "MovingPlatform": "",
+"Options": "",
 "PauseMenu": "",
 "PhysicsHelper": "",
 "Player": "",

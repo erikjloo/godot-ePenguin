@@ -148,16 +148,16 @@ tracks/0/keys = {
 "values": [ true, false, true ]
 }
 
-[sub_resource type="CircleShape2D" id=9]
+[sub_resource type="CircleShape2D" id=6]
 radius = 100.0
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 89.2864, 53.6016 )
 
-[sub_resource type="CircleShape2D" id=7]
+[sub_resource type="CircleShape2D" id=8]
 radius = 600.0
 
-[sub_resource type="RectangleShape2D" id=8]
+[sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 95, 60 )
 
 [node name="ArcticFox" type="KinematicBody2D"]
@@ -236,7 +236,7 @@ __meta__ = {
 }
 
 [node name="AttackPlayer" type="CollisionShape2D" parent="Body/AttackPlayer"]
-shape = SubResource( 9 )
+shape = SubResource( 6 )
 
 [node name="EnemySound" type="AudioStreamPlayer2D" parent="."]
 script = ExtResource( 7 )
@@ -246,7 +246,7 @@ script = ExtResource( 5 )
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -0.396851 )
-shape = SubResource( 6 )
+shape = SubResource( 7 )
 
 [node name="ChasePlayer" type="Area2D" parent="."]
 visible = false
@@ -256,7 +256,7 @@ __meta__ = {
 }
 
 [node name="ChasePlayer" type="CollisionShape2D" parent="ChasePlayer"]
-shape = SubResource( 7 )
+shape = SubResource( 8 )
 
 [node name="Hitbox" type="Area2D" parent="."]
 position = Vector2( -0.33371, 0 )
@@ -268,7 +268,7 @@ __meta__ = {
 }
 
 [node name="Hitbox" type="CollisionShape2D" parent="Hitbox"]
-shape = SubResource( 8 )
+shape = SubResource( 9 )
 
 [node name="Attack" type="Area2D" parent="."]
 position = Vector2( 68.0443, -33.0675 )
@@ -279,7 +279,7 @@ __meta__ = {
 }
 
 [node name="Attack" type="CollisionShape2D" parent="Attack"]
-shape = SubResource( 9 )
+shape = SubResource( 6 )
 
 [node name="ChaseTimer" type="Timer" parent="."]
 wait_time = 0.1
